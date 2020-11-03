@@ -3,13 +3,16 @@ var chat = {
   newline:null,
   chapter:null,
   dialog:null, //current dialog tree to follow during conversation
-  conversations:[nav.menu.dialog], //global conversations that the user can start at any time
+  conversations:[ //global conversations that the user can start at any time
+    conversation.menu.dialog,
+    conversation.debug.dialog
+  ], 
   speaking:'',
   answer:'',
   callback:null,
 
   start:() => {
-    chat.chapter = nav.start;
+    chat.chapter = conversation.start;
     chat.next();
   },
   next:() => {
@@ -48,7 +51,6 @@ var chat = {
     }, 100);
     
     user_response.focus();
-    console.log(typeof chat.animate.callback);
     if(typeof chat.animate.callback == 'function'){
         chat.animate.callback();
         chat.animate.callback = null;
@@ -107,33 +109,12 @@ var chat = {
       var progress = chat.animate.progress++;
       if(progress > chat.speaking.length){
         chat.animate.progress = 0;
-        console.log('respond!');
         chat.respond();
         return;
       }
       chat.newline.innerHTML = chat.speaking.substr(0, progress);
       chat.animate.timer = setTimeout(() => {chat.animate.go(callback);}, 1000 / 25);  
     },
-  }
-}
-
-var game = {
-  index:0,
-  new:() => {
-
-  },
-  save:() => {
-    window.localStorage.setItem('save-' + game.index, {
-      world:world,
-      party:party
-    });
-  },
-  load:() => {
-    var data = window.localStorage.getItem('save-' + game.index);
-    if(data != null && data.world != null){
-      world.load(data.world);
-      chat.talk('You are now being transported to   .   .   .   the ' + kingdom + ' kingdom');
-    }
   }
 }
 
@@ -188,7 +169,7 @@ user_response.addEventListener('keyup', (e) => {
       //unknown user response
       if(answered == false){
         chat.talk('I do not understand...', () => {
-          chat.next();
+          //chat.next();
         });
       }
   }

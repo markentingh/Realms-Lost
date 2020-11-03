@@ -2,17 +2,27 @@ var gulp = require('gulp'),
     concat = require('gulp-concat');
 
 var paths = {
-    scripts:'js/'
+    scripts:'js/',
+    utility:'js/utility/',
+    names: 'js/names/',
+    conversations:'js/conversations/'
 };
 paths.working = {
     js: {
         engine:[
-            paths.scripts + 'rnd.js',
-            paths.scripts + 'nav.js',
+            paths.names + 'names.js',
+            paths.names + 'kingdoms.js',
+            paths.utility + 'rnd.js',
+            paths.utility + 'str.js',
+            paths.conversations + 'menu.js',
+            paths.conversations + 'debug.js',
+            paths.conversations + 'start.js',
             paths.scripts + 'world.js',
             paths.scripts + 'character.js',
             paths.scripts + 'party.js',
-            paths.scripts + 'engine.js'
+            paths.scripts + 'story.js',
+            paths.scripts + 'game.js',
+            paths.scripts + 'chat.js'
         ]
     }
 };
