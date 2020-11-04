@@ -4,13 +4,14 @@
 // economy (0, 100)
 // military (0, 100)
 // technology (0, 100),
-// government ('r' = republic, 'c' = communist, 't' = tribal, 'a' = anarchy, 'k' = kingdom/royalty),
+// type ('r' = republic, 'c' = communist, 't' = tribal, 'a' = anarchy, 'k' = kingdom/royalty) (t.r.a.c.k.)
 // education (0, 100)
 // religion (0, 100)
 // farming (0, 100)
 // diplomacy (0, 100) (0 = hostile, 100 = peaceful)
 // artistry (0, 100)
 // crafting (0, 100)
+// cooking (0, 100)
 */
 names.countries = {
     republic: [
@@ -18,18 +19,19 @@ names.countries = {
             {value:'ab'},
             {value:'ac'},
             {value:'al'},
-            {value:'am'},
+            {value:'alt'},
+            {value:'am', military:10},
             {value:'as'},
             {value:'at'},
             {value:'bal'},
-            {value:'bar'},
+            {value:'bar', military:-20},
             {value:'bed'},
             {value:'bel'},
             {value:'bis'},
-            {value:'bor'},
+            {value:'bor', military:-25},
             {value:'bri'},
             {value:'cam'},
-            {value:'can'},
+            {value:'can', military:-10},
             {value:'cas'},
             {value:'casp'},
             {value:'div'},
@@ -44,20 +46,20 @@ names.countries = {
             {value:'hest'},
             {value:'hon'},
             {value:'il'},
-            {value:'ind'},
-            {value:'ken'},
+            {value:'ind', military:-10},
+            {value:'ken', military:-10},
             {value:'na'},
             {value:'nev'},
             {value:'nid'},
             {value:'pen'},
-            {value:'rus'},
+            {value:'rus', military:10},
             {value:'run'},
             {value:'ta'},
-            {value:'tar'},
+            {value:'tar', military:-20},
             {value:'tre'},
             {value:'tri'},
-            {value:'ul'},
-            {value:'zo'}
+            {value:'ul', military:-20},
+            {value:'zo', military:-20}
         ]},
         {canSkip:true, skipChance:4, values:[
             {value:'al'},
@@ -108,6 +110,7 @@ names.countries = {
             {value:'ac'},
             {value:'adr'},
             {value:'al'},
+            {value:'alt'},
             {value:'am'},
             {value:'as'},
             {value:'at'},
@@ -281,6 +284,8 @@ names.countries = {
             {value:'cha'},
             {value:'din'},
             {value:'do'},
+            {value:'don'},
+            {value:'doni'},
             {value:'du'},
             {value:'el'},
             {value:'em'},
@@ -291,8 +296,7 @@ names.countries = {
             {value:'ira'},
             {value:'sha'},
             {value:'shi'},
-            {value:'or'},
-            {value:'win'},
+            {value:'or'}
         ]},
         {canSkip:true, skipChance:10, values:[
             {value:'a'},
@@ -303,10 +307,10 @@ names.countries = {
             {value:'cia'},
             {value:'ia'},
             {value:'ira'},
-            {value:'is'},
-            {value:'lor'},
+            {value:'isa'},
             {value:'nia'},
             {value:'na'},
+            {value:'sia'},
             {value:'tan'},
             {value:'va'},
             {value:'via'},

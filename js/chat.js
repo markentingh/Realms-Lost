@@ -139,18 +139,22 @@ document.body.addEventListener('keydown', (e) => {
 user_response.addEventListener('keydown', (e) => {
   switch(e.keyCode){
     case 38://up
-      if(chat.history.list.length > 0 && ((chat.history.index == null && user_response.value == '') || chat.history.index != null)){
+      if(chat.history.list.length > 0 && ((chat.history.index == null && user_response.value == '') || (chat.history.index != null && chat.history.index < chat.history.list.length))){
         if(chat.history.index == null){chat.history.index = 0;}
         chat.history.index++;
         if(chat.history.index > chat.history.list.length){return;}
         user_response.value = chat.history.list[chat.history.list.length - chat.history.index];
+        e.preventDefault();
+        return false;
       }
       break;
     case 40://down
-      if(chat.history.list.length > 0 && (chat.history.index != null)){
+      if(chat.history.list.length > 0 && chat.history.index != null){
         chat.history.index--;
         if(chat.history.index < 1){chat.history.index = null; user_response.value = ''; return;}
         user_response.value = chat.history.list[chat.history.list.length - chat.history.index];
+        e.preventDefault();
+        return false;
       }
       break;
   }
@@ -200,6 +204,7 @@ user_response.addEventListener('keyup', (e) => {
           //chat.next();
         });
       }
+      break;
   }
 });
 

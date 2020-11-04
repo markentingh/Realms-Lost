@@ -5,13 +5,14 @@ var names = {};
 // economy (0, 100)
 // military (0, 100)
 // technology (0, 100),
-// government ('r' = republic, 'c' = communist, 't' = tribal, 'a' = anarchy, 'k' = kingdom/royalty),
+// type ('r' = republic, 'c' = communist, 't' = tribal, 'a' = anarchy, 'k' = kingdom/royalty) (t.r.a.c.k.)
 // education (0, 100)
 // religion (0, 100)
 // farming (0, 100)
 // diplomacy (0, 100) (0 = hostile, 100 = peaceful)
 // artistry (0, 100)
 // crafting (0, 100)
+// cooking (0, 100)
 */
 names.countries = {
     republic: [
@@ -19,18 +20,19 @@ names.countries = {
             {value:'ab'},
             {value:'ac'},
             {value:'al'},
-            {value:'am'},
+            {value:'alt'},
+            {value:'am', military:10},
             {value:'as'},
             {value:'at'},
             {value:'bal'},
-            {value:'bar'},
+            {value:'bar', military:-20},
             {value:'bed'},
             {value:'bel'},
             {value:'bis'},
-            {value:'bor'},
+            {value:'bor', military:-25},
             {value:'bri'},
             {value:'cam'},
-            {value:'can'},
+            {value:'can', military:-10},
             {value:'cas'},
             {value:'casp'},
             {value:'div'},
@@ -45,20 +47,20 @@ names.countries = {
             {value:'hest'},
             {value:'hon'},
             {value:'il'},
-            {value:'ind'},
-            {value:'ken'},
+            {value:'ind', military:-10},
+            {value:'ken', military:-10},
             {value:'na'},
             {value:'nev'},
             {value:'nid'},
             {value:'pen'},
-            {value:'rus'},
+            {value:'rus', military:10},
             {value:'run'},
             {value:'ta'},
-            {value:'tar'},
+            {value:'tar', military:-20},
             {value:'tre'},
             {value:'tri'},
-            {value:'ul'},
-            {value:'zo'}
+            {value:'ul', military:-20},
+            {value:'zo', military:-20}
         ]},
         {canSkip:true, skipChance:4, values:[
             {value:'al'},
@@ -109,6 +111,7 @@ names.countries = {
             {value:'ac'},
             {value:'adr'},
             {value:'al'},
+            {value:'alt'},
             {value:'am'},
             {value:'as'},
             {value:'at'},
@@ -282,6 +285,8 @@ names.countries = {
             {value:'cha'},
             {value:'din'},
             {value:'do'},
+            {value:'don'},
+            {value:'doni'},
             {value:'du'},
             {value:'el'},
             {value:'em'},
@@ -292,8 +297,7 @@ names.countries = {
             {value:'ira'},
             {value:'sha'},
             {value:'shi'},
-            {value:'or'},
-            {value:'win'},
+            {value:'or'}
         ]},
         {canSkip:true, skipChance:10, values:[
             {value:'a'},
@@ -304,10 +308,10 @@ names.countries = {
             {value:'cia'},
             {value:'ia'},
             {value:'ira'},
-            {value:'is'},
-            {value:'lor'},
+            {value:'isa'},
             {value:'nia'},
             {value:'na'},
+            {value:'sia'},
             {value:'tan'},
             {value:'va'},
             {value:'via'},
@@ -575,7 +579,7 @@ world.prototype.generate = (opts) => {
         ['gae', 'ga'], ['nb', 'n'], ['rgr', 'gr'], ['mbm', 'm'], ['bm', 'm'], ['lel', 'le'], ['mci', 'meci'], ['drth', 'dreth'], ['spd', 'sp'], ['spb', 'sp'],
         ['chie', 'chi'], ['bc', 'b'], ['aia', 'ia'], ['ngr', 'gr'], ['arar', 'ar'], ['ndc', 'nd'], ['tsh', 'sh'], ['rira', 'ria'], ['rie', 'ri'], ['mbv', 'mv'],
         ['vb', 'v'], ['fb', 'b'], ['penis', 'pen'], ['enen', 'en'], ['ndl', 'nl'], ['eneme', 'ene'], ['emene', 'eme'], ['ndt', 'nt'], ['thth', 'th'], ['chch', 'ch'],
-        ['uer', 'ur'], ['arnar', 'arna']];
+        ['uer', 'ur'], ['arnar', 'arna'], ['mgr', 'gr'], ['rir', 'ir'], ['oir', 'or']];
 
     for(var x = 97; x <= 122; x++){
         var c = String.fromCharCode(x);
@@ -593,7 +597,7 @@ world.prototype.generate = (opts) => {
         var i = 0;
         rand = rnd.number(1, 100);
         //create country object
-        var country = {type:worldgov};
+        var country = {name:'', type:worldgov};
         //determine government type
         var countrytype = worldgov == 'r' ? names.countries.republic : 
             worldgov == 'k' ? names.countries.kingdom :
@@ -655,12 +659,13 @@ world.prototype.generate = (opts) => {
                     country.type = 'c';
                 }else if(rand >= 99){
                     countrytype = names.countries.republic;
-                    country.type = 't';
+                    country.type = 'r';
                 }
                 anarchy = !rnd.bool(4);
                 break;
             case 'a':
                 //select government type for a anarchy-centric world
+                country.type = 't';
                 if(rand >= 25 && rand < 50){
                     countrytype = names.countries.kingdom;
                     country.type = 'k';
@@ -669,17 +674,72 @@ world.prototype.generate = (opts) => {
                     country.type = 'c';
                 }else if(rand >= 75){
                     countrytype = names.countries.republic;
-                    country.type = 't';
+                    country.type = 'r';
                 }
                 anarchy = !rnd.bool(25);
                 break;
-            
         }
+        switch(country.type){
+            case 'r':
+                country.culture = 50 + rnd.number(-10, 10);
+                country.economy = 75 + rnd.number(-20, 10);
+                country.military = 80 + rnd.number(-40, 0);
+                country.technology = 80 + rnd.number(-20, 10);
+                country.education = 80 + rnd.number(-20, 10);
+                country.religion = 50 + rnd.number(-25, 25);
+                country.farming = 50;
+                country.diplomacy = 75 + rnd.number(-25, 10);
+                country.artistry = 75 + rnd.number(-50, 10);
+                country.crafting = 75 + rnd.number(-25, 10);
+                country.cooking = 50 + rnd.number(-10, 30);
+                break;
+            case 'k':
+                country.culture = 75 + rnd.number(-10, 15);
+                country.economy = 40 + rnd.number(-10, 30);
+                country.military = 50 + rnd.number(-10, 30);
+                country.technology = 50 + rnd.number(-10, 30);
+                country.education = 50 + rnd.number(-10, 20);
+                country.religion = 75 + rnd.number(-10, 15);
+                country.farming = 50;
+                country.diplomacy = 50 + rnd.number(-35, 15);
+                country.artistry = 75 + rnd.number(-30, 15);
+                country.crafting = 60 + rnd.number(-10, 15);
+                country.cooking = 60 + rnd.number(-30, 15);
+                break;
+            case 'c':
+                country.culture = 25 + rnd.number(-15, 15);
+                country.economy = 80 + rnd.number(-30, 5);
+                country.military = 80 + rnd.number(-30, 5);
+                country.technology = 80 + rnd.number(-30, 10);
+                country.education = 60 + rnd.number(-30, 15);
+                country.religion = 25 + rnd.number(-10, 15);
+                country.farming = 50;
+                country.diplomacy = 40 + rnd.number(-20, 25);
+                country.artistry = 75 + rnd.number(-40, 10);
+                country.crafting = 75 + rnd.number(-10, 10);
+                country.cooking = 50 + rnd.number(-10, 35);
+                break;
+            case 't':
+                country.culture = 75 + rnd.number(-25, 15);
+                country.economy = 15 + rnd.number(-5, 25);
+                country.military = 15 + rnd.number(-10, 15);
+                country.technology = 10 + rnd.number(0, 25);
+                country.education = 25 + rnd.number(-10, 15);
+                country.religion = 75 + rnd.number(-20, 15);
+                country.farming = 15;
+                country.diplomacy = 10 + rnd.number(-5, 25);
+                country.artistry = 40 + rnd.number(-30, 15);
+                country.crafting = 25 + rnd.number(-15, 15);
+                country.cooking = 25 + rnd.number(-15, 15);
+                break;
+        }
+        //get country name and any custom attributes
         while(i < 5){
             var chosen = rnd.name(countrytype, charReplacements);
             var name = str.capitalize(chosen.name);
             if(name.length > 3 && w.countries.map(a => a.name).indexOf(name) < 0){
                 country.name = name;
+                country.anarchy = anarchy;
                 for(var y = 0; y < chosen.values.length; y++){
                     //collect attributes from name parts related to country
                     var val = chosen.values[y];
@@ -687,14 +747,18 @@ world.prototype.generate = (opts) => {
                     var attrs = Object.getOwnPropertyNames(choice).filter(a => a != 'value');
                     for(var z = 0; z < attrs.length; z++){
                         var attr = attrs[z];
-                        country[attr] = choice[attr];
+                        if(country[attr] != null && !isNaN(country[attr])){
+                            country[attr] += choice[attr];
+                        }else{
+                            country[attr] = choice[attr];
+                        }
                     }
                 }
-                w.countries.push(country);
                 break;
             }
             i++;
         }
+        w.countries.push(country);
     }
     //choose home country
     if(opts && opts.homeworld !== false && w.countries.length > 0){
@@ -927,18 +991,22 @@ document.body.addEventListener('keydown', (e) => {
 user_response.addEventListener('keydown', (e) => {
   switch(e.keyCode){
     case 38://up
-      if(chat.history.list.length > 0 && ((chat.history.index == null && user_response.value == '') || chat.history.index != null)){
+      if(chat.history.list.length > 0 && ((chat.history.index == null && user_response.value == '') || (chat.history.index != null && chat.history.index < chat.history.list.length))){
         if(chat.history.index == null){chat.history.index = 0;}
         chat.history.index++;
         if(chat.history.index > chat.history.list.length){return;}
         user_response.value = chat.history.list[chat.history.list.length - chat.history.index];
+        e.preventDefault();
+        return false;
       }
       break;
     case 40://down
-      if(chat.history.list.length > 0 && (chat.history.index != null)){
+      if(chat.history.list.length > 0 && chat.history.index != null){
         chat.history.index--;
         if(chat.history.index < 1){chat.history.index = null; user_response.value = ''; return;}
         user_response.value = chat.history.list[chat.history.list.length - chat.history.index];
+        e.preventDefault();
+        return false;
       }
       break;
   }
@@ -988,6 +1056,7 @@ user_response.addEventListener('keyup', (e) => {
           //chat.next();
         });
       }
+      break;
   }
 });
 

@@ -32,7 +32,7 @@ world.prototype.generate = (opts) => {
         ['gae', 'ga'], ['nb', 'n'], ['rgr', 'gr'], ['mbm', 'm'], ['bm', 'm'], ['lel', 'le'], ['mci', 'meci'], ['drth', 'dreth'], ['spd', 'sp'], ['spb', 'sp'],
         ['chie', 'chi'], ['bc', 'b'], ['aia', 'ia'], ['ngr', 'gr'], ['arar', 'ar'], ['ndc', 'nd'], ['tsh', 'sh'], ['rira', 'ria'], ['rie', 'ri'], ['mbv', 'mv'],
         ['vb', 'v'], ['fb', 'b'], ['penis', 'pen'], ['enen', 'en'], ['ndl', 'nl'], ['eneme', 'ene'], ['emene', 'eme'], ['ndt', 'nt'], ['thth', 'th'], ['chch', 'ch'],
-        ['uer', 'ur'], ['arnar', 'arna']];
+        ['uer', 'ur'], ['arnar', 'arna'], ['mgr', 'gr'], ['rir', 'ir'], ['oir', 'or']];
 
     for(var x = 97; x <= 122; x++){
         var c = String.fromCharCode(x);
@@ -50,7 +50,7 @@ world.prototype.generate = (opts) => {
         var i = 0;
         rand = rnd.number(1, 100);
         //create country object
-        var country = {type:worldgov};
+        var country = {name:'', type:worldgov};
         //determine government type
         var countrytype = worldgov == 'r' ? names.countries.republic : 
             worldgov == 'k' ? names.countries.kingdom :
@@ -112,12 +112,13 @@ world.prototype.generate = (opts) => {
                     country.type = 'c';
                 }else if(rand >= 99){
                     countrytype = names.countries.republic;
-                    country.type = 't';
+                    country.type = 'r';
                 }
                 anarchy = !rnd.bool(4);
                 break;
             case 'a':
                 //select government type for a anarchy-centric world
+                country.type = 't';
                 if(rand >= 25 && rand < 50){
                     countrytype = names.countries.kingdom;
                     country.type = 'k';
@@ -126,17 +127,72 @@ world.prototype.generate = (opts) => {
                     country.type = 'c';
                 }else if(rand >= 75){
                     countrytype = names.countries.republic;
-                    country.type = 't';
+                    country.type = 'r';
                 }
                 anarchy = !rnd.bool(25);
                 break;
-            
         }
+        switch(country.type){
+            case 'r':
+                country.culture = 50 + rnd.number(-10, 10);
+                country.economy = 75 + rnd.number(-20, 10);
+                country.military = 80 + rnd.number(-40, 0);
+                country.technology = 80 + rnd.number(-20, 10);
+                country.education = 80 + rnd.number(-20, 10);
+                country.religion = 50 + rnd.number(-25, 25);
+                country.farming = 50;
+                country.diplomacy = 75 + rnd.number(-25, 10);
+                country.artistry = 75 + rnd.number(-50, 10);
+                country.crafting = 75 + rnd.number(-25, 10);
+                country.cooking = 50 + rnd.number(-10, 30);
+                break;
+            case 'k':
+                country.culture = 75 + rnd.number(-10, 15);
+                country.economy = 40 + rnd.number(-10, 30);
+                country.military = 50 + rnd.number(-10, 30);
+                country.technology = 50 + rnd.number(-10, 30);
+                country.education = 50 + rnd.number(-10, 20);
+                country.religion = 75 + rnd.number(-10, 15);
+                country.farming = 50;
+                country.diplomacy = 50 + rnd.number(-35, 15);
+                country.artistry = 75 + rnd.number(-30, 15);
+                country.crafting = 60 + rnd.number(-10, 15);
+                country.cooking = 60 + rnd.number(-30, 15);
+                break;
+            case 'c':
+                country.culture = 25 + rnd.number(-15, 15);
+                country.economy = 80 + rnd.number(-30, 5);
+                country.military = 80 + rnd.number(-30, 5);
+                country.technology = 80 + rnd.number(-30, 10);
+                country.education = 60 + rnd.number(-30, 15);
+                country.religion = 25 + rnd.number(-10, 15);
+                country.farming = 50;
+                country.diplomacy = 40 + rnd.number(-20, 25);
+                country.artistry = 75 + rnd.number(-40, 10);
+                country.crafting = 75 + rnd.number(-10, 10);
+                country.cooking = 50 + rnd.number(-10, 35);
+                break;
+            case 't':
+                country.culture = 75 + rnd.number(-25, 15);
+                country.economy = 15 + rnd.number(-5, 25);
+                country.military = 15 + rnd.number(-10, 15);
+                country.technology = 10 + rnd.number(0, 25);
+                country.education = 25 + rnd.number(-10, 15);
+                country.religion = 75 + rnd.number(-20, 15);
+                country.farming = 15;
+                country.diplomacy = 10 + rnd.number(-5, 25);
+                country.artistry = 40 + rnd.number(-30, 15);
+                country.crafting = 25 + rnd.number(-15, 15);
+                country.cooking = 25 + rnd.number(-15, 15);
+                break;
+        }
+        //get country name and any custom attributes
         while(i < 5){
             var chosen = rnd.name(countrytype, charReplacements);
             var name = str.capitalize(chosen.name);
             if(name.length > 3 && w.countries.map(a => a.name).indexOf(name) < 0){
                 country.name = name;
+                country.anarchy = anarchy;
                 for(var y = 0; y < chosen.values.length; y++){
                     //collect attributes from name parts related to country
                     var val = chosen.values[y];
@@ -144,14 +200,18 @@ world.prototype.generate = (opts) => {
                     var attrs = Object.getOwnPropertyNames(choice).filter(a => a != 'value');
                     for(var z = 0; z < attrs.length; z++){
                         var attr = attrs[z];
-                        country[attr] = choice[attr];
+                        if(country[attr] != null && !isNaN(country[attr])){
+                            country[attr] += choice[attr];
+                        }else{
+                            country[attr] = choice[attr];
+                        }
                     }
                 }
-                w.countries.push(country);
                 break;
             }
             i++;
         }
+        w.countries.push(country);
     }
     //choose home country
     if(opts && opts.homeworld !== false && w.countries.length > 0){
