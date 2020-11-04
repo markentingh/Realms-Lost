@@ -13,130 +13,411 @@ var names = {};
 // artistry (0, 100)
 // crafting (0, 100)
 */
-names.kingdoms = [
-    {values:[
-        {value:'ab', government:'t'},
-        {value:'aben', government:'k'},
-        {value:'ac', government:'k'},
-        {value:'adr', government:'k'},
-        {value:'al', government:'r'},
-        {value:'am', government:'r'},
-        {value:'as', government:'k'},
-        {value:'bael', government:'k'},
-        {value:'bal', government:'c'},
-        {value:'bar', government:'r'},
-        {value:'bed', government:'c'},
-        {value:'bel', government:'r'},
-        {value:'bik', government:'t'},
-        {value:'bin', government:'r'},
-        {value:'bis', government:'k'},
-        {value:'bor', government:'c'},
-        {value:'bri', government:'r'},
-        {value:'cam', government:'k'},
-        {value:'can', government:'k'},
-        {value:'cas', government:'r'},
-        {value:'casp', government:'r'},
-        {value:'chi', government:'c'},
-        {value:'daes', government:'k'},
-        {value:'div', government:'r'},
-        {value:'dwar', government:'k'},
-        {value:'elv', government:'r'},
-        {value:'es', government:'r'},
-        {value:'eth', government:'k'},
-        {value:'eva', government:'r'},
-        {value:'evan', government:'k'},
-        {value:'ever', government:'c'},
-        {value:'fan', government:'r'},
-        {value:'far', government:'r'},
-        {value:'fay', government:'k'},
-        {value:'fel', government:'k'},
-        {value:'fon', government:'c'},
-        {value:'fut', government:'r'},
-        {value:'ga', government:'t'},
-        {value:'gen', government:'c'},
-        {value:'gha', government:'c'},
-        {value:'gor', government:'k'},
-        {value:'hel', government:'k'},
-        {value:'hest', government:'r'},
-        {value:'hon', government:'c'},
-        {value:'ik', government:'k'},
-        {value:'il', government:'r'},
-        {value:'ind', government:'k'},
-        {value:'ish', government:'t'},
-        {value:'ist', government:'c'},
-        {value:'ing', government:'r'},
-        {value:'kri', government:'r'},
-        {value:'kur', government:'t'},
-        {value:'ky', government:'t'},
-        {value:'nar', government:'r'},
-        {value:'nida', government:'t'},
-        {value:'pen', government:'r'},
-        {value:'phe', government:'r'},
-        {value:'pun', government:'c'},
-        {value:'que', government:'r'},
-        {value:'qui', government:'c'},
-        {value:'rus', government:'c'},
-        {value:'run', government:'r'},
-        {value:'ta', government:'k'},
-        {value:'tar', government:'t'},
-        {value:'tre', government:'r'},
-        {value:'tri', government:'k'},
-        {value:'tsu', government:'k'},
-        {value:'ult', government:'c'},
-        {value:'ut', government:'c'},
-        {value:'zel', government:'t'},
-        {value:'zem', government:'t'},
-        {value:'zo', government:'c'},
-        {value:'zu', government:'t'}
-    ]},
-    {canSkip:true, skipChance:2, values:[
-        {value:'al'},
-        {value:'ar'},
-        {value:'bos', government:'t'},
-        {value:'cha'},
-        {value:'chi', government:'c'},
-        {value:'din', government:'k'},
-        {value:'do'},
-        {value:'du', government:'t'},
-        {value:'el'},
-        {value:'elum', government:'k'},
-        {value:'elus', government:'k'},
-        {value:'em'},
-        {value:'emb'},
-        {value:'en'},
-        {value:'end'},
-        {value:'er'},
-        {value:'fel', government:'k'},
-        {value:'ira'},
-        {value:'sha'},
-        {value:'shan', government:'c'},
-        {value:'shi', government:'c'},
-        {value:'olen', government:'r'},
-        {value:'or'},
-        {value:'win', government:'k'},
-    ]},
-    {canSkip:true, skipChance:10, values:[
-        {value:'a'},
-        {value:'ar'},
-        {value:'ba'},
-        {value:'bi'},
-        {value:'ca', government:'r'},
-        {value:'cia', government:'r'},
-        {value:'ia', government:'k'},
-        {value:'ira'},
-        {value:'is'},
-        {value:'gard', government:'k'},
-        {value:'heim', government:'k'},
-        {value:'helm', government:'k'},
-        {value:'lor', government:'k'},
-        {value:'mond', government:'k'},
-        {value:'nia', government:'k'},
-        {value:'tan', government:'r'},
-        {value:'va'},
-        {value:'via'},
-        {value:'ya'}
-    ]}
-];
+names.countries = {
+    republic: [
+        {values:[
+            {value:'ab'},
+            {value:'ac'},
+            {value:'al'},
+            {value:'am'},
+            {value:'as'},
+            {value:'at'},
+            {value:'bal'},
+            {value:'bar'},
+            {value:'bed'},
+            {value:'bel'},
+            {value:'bis'},
+            {value:'bor'},
+            {value:'bri'},
+            {value:'cam'},
+            {value:'can'},
+            {value:'cas'},
+            {value:'casp'},
+            {value:'div'},
+            {value:'es'},
+            {value:'eth'},
+            {value:'eva'},
+            {value:'fan'},
+            {value:'far'},
+            {value:'ga'},
+            {value:'gen'},
+            {value:'hel'},
+            {value:'hest'},
+            {value:'hon'},
+            {value:'il'},
+            {value:'ind'},
+            {value:'ken'},
+            {value:'na'},
+            {value:'nev'},
+            {value:'nid'},
+            {value:'pen'},
+            {value:'rus'},
+            {value:'run'},
+            {value:'ta'},
+            {value:'tar'},
+            {value:'tre'},
+            {value:'tri'},
+            {value:'ul'},
+            {value:'zo'}
+        ]},
+        {canSkip:true, skipChance:4, values:[
+            {value:'al'},
+            {value:'ar'},
+            {value:'ban'},
+            {value:'da'},
+            {value:'den'},
+            {value:'el'},
+            {value:'em'},
+            {value:'en'},
+            {value:'end'},
+            {value:'er'},
+            {value:'fel'},
+            {value:'sha'},
+            {value:'or'},
+        ]},
+        {canSkip:true, skipChance:10, values:[
+            {value:'a'},
+            {value:'ar'},
+            {value:'ba'},
+            {value:'bi'},
+            {value:'ca'},
+            {value:'ce'},
+            {value:'cia'},
+            {value:'da'},
+            {value:'den'},
+            {value:'era'},
+            {value:'la'},
+            {value:'land'},
+            {value:'gra'},
+            {value:'ia'},
+            {value:'ira'},
+            {value:'is'},
+            {value:'isa'},
+            {value:'nia'},
+            {value:'tan'},
+            {value:'tia'},
+            {value:'va'},
+            {value:'via'},
+            {value:'ya'}
+        ]}
+    ],
+
+    kingdom: [
+        {values:[
+            {value:'ab'},
+            {value:'aben'},
+            {value:'ac'},
+            {value:'adr'},
+            {value:'al'},
+            {value:'am'},
+            {value:'as'},
+            {value:'at'},
+            {value:'bael'},
+            {value:'bal'},
+            {value:'bar'},
+            {value:'bed'},
+            {value:'bel'},
+            {value:'bik'},
+            {value:'bin'},
+            {value:'bis'},
+            {value:'bor'},
+            {value:'bri'},
+            {value:'cam'},
+            {value:'can'},
+            {value:'cas'},
+            {value:'casp'},
+            {value:'chi'},
+            {value:'daes'},
+            {value:'div'},
+            {value:'dwar'},
+            {value:'elv'},
+            {value:'es'},
+            {value:'eth'},
+            {value:'eva'},
+            {value:'evan'},
+            {value:'ever'},
+            {value:'fan'},
+            {value:'far'},
+            {value:'fay'},
+            {value:'fel'},
+            {value:'fon'},
+            {value:'fut'},
+            {value:'ga'},
+            {value:'gen'},
+            {value:'gha'},
+            {value:'gor'},
+            {value:'hel'},
+            {value:'hest'},
+            {value:'hon'},
+            {value:'ik'},
+            {value:'il'},
+            {value:'ind'},
+            {value:'kur'},
+            {value:'ky'},
+            {value:'nar'},
+            {value:'nida'},
+            {value:'pen'},
+            {value:'phel'},
+            {value:'phen'},
+            {value:'pun'},
+            {value:'run'},
+            {value:'ta'},
+            {value:'tar'},
+            {value:'tre'},
+            {value:'tri'},
+            {value:'tsu'},
+            {value:'ul'},
+            {value:'zel'}
+        ]},
+        {canSkip:true, skipChance:2, values:[
+            {value:'al'},
+            {value:'ar'},
+            {value:'din'},
+            {value:'elum'},
+            {value:'elus'},
+            {value:'em'},
+            {value:'en'},
+            {value:'end'},
+            {value:'er'},
+            {value:'fel'},
+            {value:'ira'},
+            {value:'len'},
+            {value:'la'},
+            {value:'lan'},
+            {value:'mar'},
+            {value:'nar'},
+            {value:'nor'},
+            {value:'t'},
+            {value:'te'},
+            {value:'tal'},
+            {value:'or'},
+            {value:'volen'}
+        ]},
+        {canSkip:true, skipChance:10, values:[
+            {value:'a'},
+            {value:'ar'},
+            {value:'ba'},
+            {value:'ca'},
+            {value:'cia'},
+            {value:'ia'},
+            {value:'ira'},
+            {value:'is'},
+            {value:'gard'},
+            {value:'heim'},
+            {value:'helm'},
+            {value:'lor'},
+            {value:'mond'},
+            {value:'nia'},
+            {value:'tia'},
+            {value:'va'},
+            {value:'via'},
+            {value:'ya'}
+        ]}
+    ],
+
+    communist: [
+        {values:[
+            {value:'ab'},
+            {value:'aben'},
+            {value:'ac'},
+            {value:'adr'},
+            {value:'al'},
+            {value:'am'},
+            {value:'as'},
+            {value:'bal'},
+            {value:'bar'},
+            {value:'bed'},
+            {value:'bel'},
+            {value:'bik'},
+            {value:'bin'},
+            {value:'bis'},
+            {value:'bor'},
+            {value:'bri'},
+            {value:'cam'},
+            {value:'can'},
+            {value:'cas'},
+            {value:'chin'},
+            {value:'div'},
+            {value:'el'},
+            {value:'es'},
+            {value:'eva'},
+            {value:'evan'},
+            {value:'fa'},
+            {value:'far'},
+            {value:'fel'},
+            {value:'fon'},
+            {value:'fut'},
+            {value:'ga'},
+            {value:'gen'},
+            {value:'gha'},
+            {value:'gor'},
+            {value:'hel'},
+            {value:'hest'},
+            {value:'hon'},
+            {value:'ik'},
+            {value:'il'},
+            {value:'ind'},
+            {value:'ish'},
+            {value:'ist'},
+            {value:'ing'},
+            {value:'kri'},
+            {value:'kur'},
+            {value:'ky'},
+            {value:'nar'},
+            {value:'pen'},
+            {value:'phe'},
+            {value:'pun'},
+            {value:'que'},
+            {value:'qui'},
+            {value:'rus'},
+            {value:'ta'},
+            {value:'tar'},
+            {value:'tre'},
+            {value:'tri'}
+        ]},
+        {canSkip:true, skipChance:2, values:[
+            {value:'al'},
+            {value:'ar'},
+            {value:'bos'},
+            {value:'cha'},
+            {value:'din'},
+            {value:'do'},
+            {value:'du'},
+            {value:'el'},
+            {value:'em'},
+            {value:'en'},
+            {value:'end'},
+            {value:'er'},
+            {value:'fel'},
+            {value:'ira'},
+            {value:'sha'},
+            {value:'shi'},
+            {value:'or'},
+            {value:'win'},
+        ]},
+        {canSkip:true, skipChance:10, values:[
+            {value:'a'},
+            {value:'ar'},
+            {value:'ba'},
+            {value:'bi'},
+            {value:'ca'},
+            {value:'cia'},
+            {value:'ia'},
+            {value:'ira'},
+            {value:'is'},
+            {value:'lor'},
+            {value:'nia'},
+            {value:'na'},
+            {value:'tan'},
+            {value:'va'},
+            {value:'via'},
+            {value:'ya'}
+        ]}
+    ],
+
+    tribal: [
+        {values:[
+            {value:'ab'},
+            {value:'ac'},
+            {value:'adr'},
+            {value:'af'},
+            {value:'al'},
+            {value:'am'},
+            {value:'as'},
+            {value:'bal'},
+            {value:'bar'},
+            {value:'bed'},
+            {value:'bel'},
+            {value:'bik'},
+            {value:'bin'},
+            {value:'bis'},
+            {value:'bor'},
+            {value:'bri'},
+            {value:'cam'},
+            {value:'can'},
+            {value:'cas'},
+            {value:'div'},
+            {value:'es'},
+            {value:'ev'},
+            {value:'far'},
+            {value:'fay'},
+            {value:'fel'},
+            {value:'fon'},
+            {value:'fut'},
+            {value:'ga'},
+            {value:'gen'},
+            {value:'gha'},
+            {value:'gor'},
+            {value:'hel'},
+            {value:'hon'},
+            {value:'ik'},
+            {value:'il'},
+            {value:'indi'},
+            {value:'ish'},
+            {value:'ist'},
+            {value:'ing'},
+            {value:'ke'},
+            {value:'kri'},
+            {value:'ku'},
+            {value:'ky'},
+            {value:'nar'},
+            {value:'pen'},
+            {value:'pun'},
+            {value:'run'},
+            {value:'ta'},
+            {value:'tar'},
+            {value:'tre'},
+            {value:'tri'},
+            {value:'tsu'},
+            {value:'ult'},
+            {value:'ut'},
+            {value:'zel'},
+            {value:'zem'},
+            {value:'zo'},
+            {value:'zu'}
+        ]},
+        {canSkip:true, skipChance:2, values:[
+            {value:'al'},
+            {value:'ar'},
+            {value:'bos'},
+            {value:'cha'},
+            {value:'chi'},
+            {value:'din'},
+            {value:'do'},
+            {value:'du'},
+            {value:'el'},
+            {value:'em'},
+            {value:'emb'},
+            {value:'en'},
+            {value:'end'},
+            {value:'er'},
+            {value:'fel'},
+            {value:'ira'},
+            {value:'ric'},
+            {value:'sha'},
+            {value:'shan'},
+            {value:'shi'},
+            {value:'or'}
+        ]},
+        {canSkip:true, skipChance:10, values:[
+            {value:'a'},
+            {value:'ar'},
+            {value:'ba'},
+            {value:'bi'},
+            {value:'ca'},
+            {value:'den'},
+            {value:'ira'},
+            {value:'is'},
+            {value:'la'},
+            {value:'len'},
+            {value:'li'},
+            {value:'na'},
+            {value:'tan'},
+            {value:'va'},
+            {value:'ya'}
+        ]}
+    ]
+};
 var rnd = {
     number: (min, max) => {
         return Math.round(min + (Math.random() * max));
@@ -144,7 +425,7 @@ var rnd = {
     bool: (chance) => {
         return rnd.number(0, chance) === 1;
     },
-    name: (parts) => {
+    name: (parts, replacements) => {
         //parts = [{canSkip:false, skipChance:1, values:[{value:'a'},{value:'b'}]}, ...]
         var n = '';
         var chosen = [];
@@ -165,6 +446,13 @@ var rnd = {
                 }
             }
         }
+        if(replacements != null){
+            //fix any unwanted character patterns
+            for(var x = 0; x < replacements.length; x++){
+                var r = replacements[x];
+                n = n.replace(r[0], r[1]);
+            }
+        }
         return {name:n, values:chosen}; //values = [{part, index, value}, ...]
     }
 }
@@ -179,19 +467,20 @@ var conversation = {
             a:[
                 {
                     word:['menu', 'pause'], callback: () => {
-                        chat.talk('What would you like to do? Save? Load? Go back to your game?');
+                        var who = chat.who;
+                        chat.talk('What would you like to do? Save? Load? Go back to your game?', null, 'menu');
                         chat.listen((answer) => {
                             if(chat.verify(answer, 'save')){
                                 game.save();
                                 chat.talk('Saving. . .  .  .  .   .   .   .   Done.', () => {
                                     chat.exit();
-                                    chat.talk('You are now back in the game.');
+                                    chat.talk('You are now back in the game.', null, who);
                                 });
                             }else if(chat.verify(answer, 'load')){
                                 chat.talk('Okay.', () => { game.load();});
                             }else if(chat.verify(answer, 'back')){
                                 chat.exit();
-                                chat.talk('You are now back in the game.');
+                                chat.talk('You are now back in the game.', null, who);
                             }
                         });
                     }
@@ -205,11 +494,16 @@ conversation.debug = {
         a:[
             {
                 word:'debug', callback: () => {
+                    var who = chat.who;
                     var commands = [
-                        {value: 'new world', callback: () => {story.world = (new world()).generate(); chat.talk(story.world.kingdoms.map(a => a.name).join(', ')); console.log(story.world);}},
-                        {value: 'back', callback: () => {chat.exit(); chat.talk('You are now back in the game.');}}
+                        {value: 'new world', callback: () => {
+                            story.world = (new world()).generate({govtype:chat.answer.indexOf('republic') >= 0 ? 'r' : chat.answer.indexOf('communis') >= 0 ? 'c' : chat.answer.indexOf('kingdom') >= 0 ? 'k' : chat.answer.indexOf('trib') >= 0 ? 't' : chat.answer.indexOf('anarch') >= 0 ? 'a' : ''}); 
+                            chat.talk(story.world.countries.map(a => a.name).join(', ')); 
+                            console.log(story.world.countries);
+                        }},
+                        {value: 'back', callback: () => {chat.exit(); chat.talk('You are now back in the game.', null, who);}}
                     ]
-                    chat.talk('Here is a list of known debug commands: ' + commands.map(a => a.value).join(', ') + '.');
+                    chat.talk('Here is a list of known debug commands: ' + commands.map(a => a.value).join(', ') + '.', null, 'debug');
                     chat.listen((answer) => {
                         for(var x = 0; x < commands.length; x++){
                             var cmd = commands[x];
@@ -226,6 +520,7 @@ conversation.debug = {
 };
 conversation.start = {
     index:0,
+    who:'game',
     dialog:[
         {
             q:'Hello adventurer, and welcome to the story of Realms Lost. Would you like to start a new game or continue from your last save point?',
@@ -247,7 +542,7 @@ conversation.start = {
     ]
 };
 var world = function(){};
-world.prototype.generate = (homeworld) => {
+world.prototype.generate = (opts) => {
     var w = new world();
     w.date = {
         year:rnd.number(1, 9999),
@@ -256,35 +551,154 @@ world.prototype.generate = (homeworld) => {
         days:rnd.number(250, 999),
     };
     w.planet = '';
-    w.kingdoms = [];
+    w.countries = [];
+    var rand = rnd.number(0, 27);
+    //start with republic-centric world
+    var worldgov = 'r'; 
+    if(rand > 10 && rand < 20){
+        //create kingdom-centric world
+        worldgov = 'k';
+    }else if(rand >= 20 && rand < 25){
+        //create communist-centric world
+        worldgov = 'c';
+    }else if(rand >= 25 && rand < 27){
+        //create tribal-centric world
+        worldgov = 't';
+    }else if(rand >= 27){
+        //create anarchy-centric world
+        worldgov = 'a';
+    }
+    if(opts && opts.govtype != null && opts.govtype != ''){worldgov = opts.govtype;}
+
+    //set up bad character groupings replacements
+    var charReplacements = [['dsh', 'sh'], ['thb', 'th'], ['thd', 'thid'], ['cv', 'v'], ['eerl', 'eel'], ['rer', 're'], ['ndv', 'nv'], ['tae', 'te'], ['db', 'd'],
+        ['gae', 'ga'], ['nb', 'n'], ['rgr', 'gr'], ['mbm', 'm'], ['bm', 'm'], ['lel', 'le'], ['mci', 'meci'], ['drth', 'dreth'], ['spd', 'sp'], ['spb', 'sp'],
+        ['chie', 'chi'], ['bc', 'b'], ['aia', 'ia'], ['ngr', 'gr'], ['arar', 'ar'], ['ndc', 'nd'], ['tsh', 'sh'], ['rira', 'ria'], ['rie', 'ri'], ['mbv', 'mv'],
+        ['vb', 'v'], ['fb', 'b'], ['penis', 'pen'], ['enen', 'en'], ['ndl', 'nl'], ['eneme', 'ene'], ['emene', 'eme'], ['ndt', 'nt'], ['thth', 'th'], ['chch', 'ch'],
+        ['uer', 'ur'], ['arnar', 'arna']];
+
+    for(var x = 97; x <= 122; x++){
+        var c = String.fromCharCode(x);
+        if([101].indexOf(x) >= 0){
+            //find three characters
+            charReplacements.push([c + c + c, c + c]);
+        }else{
+            //find two characters
+            charReplacements.push([c + c, c]);
+        }
+    }
+    
     for(var x = 1; x < rnd.number(1, 99);x++){
-        //generate kingdoms
+        //generate countries
         var i = 0;
+        rand = rnd.number(1, 100);
+        //create country object
+        var country = {type:worldgov};
+        //determine government type
+        var countrytype = worldgov == 'r' ? names.countries.republic : 
+            worldgov == 'k' ? names.countries.kingdom :
+            worldgov == 'c' ? names.countries.communist :
+            names.countries.tribal;
+        var anarchy = false;
+        switch(worldgov){
+            case 'r':
+                //select government type for a republic-centric world
+                anarchy = rnd.bool(20);
+                if(rand >= 65 && rand < 85){
+                    countrytype = names.countries.kingdom;
+                    country.type = 'k';
+                }else if(rand >= 85 && rand < 95){
+                    countrytype = names.countries.communist;
+                    country.type = 'c';
+                }else if(rand >= 95){
+                    countrytype = names.countries.tribal;
+                    country.type = 't';
+                    anarchy = true;
+                }
+                break;
+            case 'k':
+                //select government type for a kingdom-centric world
+                anarchy = rnd.bool(8);
+                if(rand >= 75 && rand < 80){
+                    countrytype = names.countries.republic;
+                    country.type = 'r';
+                    anarchy = rnd.bool(20);
+                }else if(rand >= 80 && rand < 83){
+                    countrytype = names.countries.communist;
+                    country.type = 'c';
+                }else if(rand >= 83){
+                    countrytype = names.countries.tribal;
+                    country.type = 't';
+                    anarchy = true;
+                }
+                break;
+            case 'c':
+                //select government type for a communist-centric world
+                if(rand >= 75 && rand < 90){
+                    countrytype = names.countries.kingdom;
+                    country.type = 'k';
+                }else if(rand >= 90 && rand < 93){
+                    countrytype = names.countries.republic;
+                    country.type = 'r';
+                }else if(rand >= 93){
+                    countrytype = names.countries.tribal;
+                    country.type = 't';
+                }
+                break;
+            case 't':
+                //select government type for a tribal-centric world
+                if(rand >= 90 && rand < 95){
+                    countrytype = names.countries.kingdom;
+                    country.type = 'k';
+                }else if(rand >= 95 && rand < 99){
+                    countrytype = names.countries.communist;
+                    country.type = 'c';
+                }else if(rand >= 99){
+                    countrytype = names.countries.republic;
+                    country.type = 't';
+                }
+                anarchy = !rnd.bool(4);
+                break;
+            case 'a':
+                //select government type for a anarchy-centric world
+                if(rand >= 25 && rand < 50){
+                    countrytype = names.countries.kingdom;
+                    country.type = 'k';
+                }else if(rand >= 50 && rand < 75){
+                    countrytype = names.countries.communist;
+                    country.type = 'c';
+                }else if(rand >= 75){
+                    countrytype = names.countries.republic;
+                    country.type = 't';
+                }
+                anarchy = !rnd.bool(25);
+                break;
+            
+        }
         while(i < 5){
-            var chosen = rnd.name(names.kingdoms);
+            var chosen = rnd.name(countrytype, charReplacements);
             var name = str.capitalize(chosen.name);
-            if(name.length >= 3 && w.kingdoms.map(a => a.name).indexOf(name) < 0){
-                //create kingdom object
-                var kingdom = {name:name};
+            if(name.length > 3 && w.countries.map(a => a.name).indexOf(name) < 0){
+                country.name = name;
                 for(var y = 0; y < chosen.values.length; y++){
-                    //collect attributes from name parts related to kingdom
+                    //collect attributes from name parts related to country
                     var val = chosen.values[y];
-                    var choice = names.kingdoms[val.part].values[val.index];
+                    var choice = countrytype[val.part].values[val.index];
                     var attrs = Object.getOwnPropertyNames(choice).filter(a => a != 'value');
                     for(var z = 0; z < attrs.length; z++){
                         var attr = attrs[z];
-                        kingdom[attr] = choice[attr];
+                        country[attr] = choice[attr];
                     }
                 }
-                w.kingdoms.push(kingdom);
+                w.countries.push(country);
                 break;
             }
             i++;
         }
     }
-    //choose home kingdom
-    if(homeworld !== false && w.kingdoms.length > 0){
-        w.kingdoms[rnd.number(0, w.kingdoms.length - 1)].home = true;
+    //choose home country
+    if(opts && opts.homeworld !== false && w.countries.length > 0){
+        w.countries[rnd.number(0, w.countries.length - 1)].home = true;
     }
     return w;
 }
@@ -292,7 +706,7 @@ world.prototype.load = (w) => {
     var w = new world();
     w.date = w.date;
     w.planet = w.planet;
-    w.kingdoms = w.kingdoms;
+    w.countries = w.countries;
     return w;
 }
 var character = function(){
@@ -382,7 +796,9 @@ var chat = {
     conversation.debug.dialog
   ], 
   speaking:'',
+  who:'game',
   answer:'',
+  history:{index:null, list:[]},
   callback:null,
 
   start:() => {
@@ -397,9 +813,13 @@ var chat = {
     }
     chat.talk(speak);
   },
-  talk: (speak, callback, noanim) => {
+  talk: (speak, callback, who, noanim) => {
     //talk to the user
+    if(who != null && who != 'user'){
+      chat.who = who;
+    }else if(who != 'user'){who = chat.who;}
     chat.newline = document.createElement('div');
+    chat.newline.className = who;
     chat.div.appendChild(chat.newline);
     //animate response
     chat.speaking = speak;
@@ -504,6 +924,26 @@ document.body.addEventListener('keydown', (e) => {
   }
 });
 
+user_response.addEventListener('keydown', (e) => {
+  switch(e.keyCode){
+    case 38://up
+      if(chat.history.list.length > 0 && ((chat.history.index == null && user_response.value == '') || chat.history.index != null)){
+        if(chat.history.index == null){chat.history.index = 0;}
+        chat.history.index++;
+        if(chat.history.index > chat.history.list.length){return;}
+        user_response.value = chat.history.list[chat.history.list.length - chat.history.index];
+      }
+      break;
+    case 40://down
+      if(chat.history.list.length > 0 && (chat.history.index != null)){
+        chat.history.index--;
+        if(chat.history.index < 1){chat.history.index = null; user_response.value = ''; return;}
+        user_response.value = chat.history.list[chat.history.list.length - chat.history.index];
+      }
+      break;
+  }
+});
+
 user_response.addEventListener('keyup', (e) => {
   if(chat.animate.progress > 0){return;}
 	switch(e.keyCode){
@@ -514,7 +954,9 @@ user_response.addEventListener('keyup', (e) => {
       user_response.value = '';
       if(clean_response == ''){return;}
       //print user input
-      chat.talk(response, null, true);
+      chat.history.list.push(response);
+      chat.history.index = null;
+      chat.talk(response, null, 'user', true);
       chat.answer = clean_response;
 
       //check for answer listener

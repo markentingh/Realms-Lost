@@ -5,7 +5,7 @@ var rnd = {
     bool: (chance) => {
         return rnd.number(0, chance) === 1;
     },
-    name: (parts) => {
+    name: (parts, replacements) => {
         //parts = [{canSkip:false, skipChance:1, values:[{value:'a'},{value:'b'}]}, ...]
         var n = '';
         var chosen = [];
@@ -24,6 +24,13 @@ var rnd = {
                     }
                     i++;
                 }
+            }
+        }
+        if(replacements != null){
+            //fix any unwanted character patterns
+            for(var x = 0; x < replacements.length; x++){
+                var r = replacements[x];
+                n = n.replace(r[0], r[1]);
             }
         }
         return {name:n, values:chosen}; //values = [{part, index, value}, ...]

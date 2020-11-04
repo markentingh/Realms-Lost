@@ -8,7 +8,9 @@ var chat = {
     conversation.debug.dialog
   ], 
   speaking:'',
+  who:'game',
   answer:'',
+  history:{index:null, list:[]},
   callback:null,
 
   start:() => {
@@ -23,9 +25,13 @@ var chat = {
     }
     chat.talk(speak);
   },
-  talk: (speak, callback, noanim) => {
+  talk: (speak, callback, who, noanim) => {
     //talk to the user
+    if(who != null && who != 'user'){
+      chat.who = who;
+    }else if(who != 'user'){who = chat.who;}
     chat.newline = document.createElement('div');
+    chat.newline.className = who;
     chat.div.appendChild(chat.newline);
     //animate response
     chat.speaking = speak;
@@ -130,6 +136,26 @@ document.body.addEventListener('keydown', (e) => {
   }
 });
 
+user_response.addEventListener('keydown', (e) => {
+  switch(e.keyCode){
+    case 38://up
+      if(chat.history.list.length > 0 && ((chat.history.index == null && user_response.value == '') || chat.history.index != null)){
+        if(chat.history.index == null){chat.history.index = 0;}
+        chat.history.index++;
+        if(chat.history.index > chat.history.list.length){return;}
+        user_response.value = chat.history.list[chat.history.list.length - chat.history.index];
+      }
+      break;
+    case 40://down
+      if(chat.history.list.length > 0 && (chat.history.index != null)){
+        chat.history.index--;
+        if(chat.history.index < 1){chat.history.index = null; user_response.value = ''; return;}
+        user_response.value = chat.history.list[chat.history.list.length - chat.history.index];
+      }
+      break;
+  }
+});
+
 user_response.addEventListener('keyup', (e) => {
   if(chat.animate.progress > 0){return;}
 	switch(e.keyCode){
@@ -140,7 +166,9 @@ user_response.addEventListener('keyup', (e) => {
       user_response.value = '';
       if(clean_response == ''){return;}
       //print user input
-      chat.talk(response, null, true);
+      chat.history.list.push(response);
+      chat.history.index = null;
+      chat.talk(response, null, 'user', true);
       chat.answer = clean_response;
 
       //check for answer listener

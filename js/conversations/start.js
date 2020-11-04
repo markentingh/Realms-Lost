@@ -1,5 +1,6 @@
 conversation.start = {
     index:0,
+    who:'game',
     dialog:[
         {
             q:'Hello adventurer, and welcome to the story of Realms Lost. Would you like to start a new game or continue from your last save point?',

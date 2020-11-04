@@ -11,7 +11,7 @@ paths.working = {
     js: {
         engine:[
             paths.names + 'names.js',
-            paths.names + 'kingdoms.js',
+            paths.names + 'countries.js',
             paths.utility + 'rnd.js',
             paths.utility + 'str.js',
             paths.conversations + 'menu.js',
